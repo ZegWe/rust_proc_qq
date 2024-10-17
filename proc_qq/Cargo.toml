@@ -9,13 +9,13 @@ repository = "https://github.com/niuhuan/rust_proc_qq"
 [dependencies]
 async-trait = "0.1"
 futures = "0.3"
-reqwest = "0.11"
+reqwest = { version = "0.11", default-features = false }
 proc_qq_codegen = { path = "../proc_qq_codegen" }
 bytes = "1"
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
-ricq = { git = "https://github.com/lz1998/ricq.git", branch = "master" }
-ricq-core = { git = "https://github.com/lz1998/ricq.git", branch = "master" }
+ricq = { path = "../../ricq/ricq" }
+ricq-core = { path = "../../ricq/ricq-core" }
 anyhow = "1.0"
 serde = "1.0"
 serde_json = "1.0"
@@ -47,3 +47,4 @@ connect_handler = []
 proxy = ["connect_handler", "dep:tokio-socks", "dep:trust-dns-resolver", "dep:url"]
 event_args = ["proc_qq_codegen/event_args"]
 scheduler = ["dep:tokio-cron-scheduler", "proc_qq_codegen/scheduler"]
+rustls = ["reqwest/rustls-tls", "ricq/rustls"]
